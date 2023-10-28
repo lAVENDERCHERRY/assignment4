@@ -16,24 +16,43 @@
 //.L4:
         //ret
 
+// Function to calculate a result by iterating through each bit of 'a'
 long loop(long a, long b) {
-  long result = 0;
-  for (long mask = ?; mask != 0; mask <<= ?) {
-    result |= (? & ?);
-  }
-  return result;
+    // Initialize the result to 0
+    long result = 0;
+
+    // Start a loop with 'mask' initialized to 1
+    // as long as mask does not = 0. we continue the loop
+    // each iteration, we shift left by 2 bits
+    for (long mask = 1; mask != 0; mask <<= 2) {
+        // Check if the current bit in 'a' (indicated by 'mask') is set (1)
+        if (mask & a) {
+            // If the bit is set in 'a', perform a bitwise AND operation between 'mask' and 'b',
+            // and then perform a bitwise OR operation with the 'result'
+            result |= (mask & b);
+        }
+    }
+
+    // Return the final result
+    return result;
 }
+
 int main(int argc, char *argv[]) {
-  if (argc == 3) {
-    long a = strtol(argv[1], NULL, 10);
-    long b = strtol(argv[2], NULL, 10);
-    printf("loop(%ld, %ld): %ld\n", a, b, loop(a, b));
-  } else {
-    loop(1, 5): 1
-    loop(2, 4): 0
-    loop(3, 3): 1
-    loop(4, 2): 4
-    loop(5, 1): 5
-  }
-  return 0;
+    if (argc == 3) {
+        // If two command-line arguments are provided, parse them as long integers
+        long a = strtol(argv[1], NULL, 10);
+        long b = strtol(argv[2], NULL, 10);
+
+        // Print the result of the 'loop' function for the provided inputs
+        printf("loop(%ld, %ld): %ld\n", a, b, loop(a, b));
+    } else {
+        // If not enough arguments are provided, print the results of 'loop' for specific test cases
+        printf("loop(1, 5): %ld\n", loop(1, 5));
+        printf("loop(2, 4): %ld\n", loop(2, 4));
+        printf("loop(3, 3): %ld\n", loop(3, 3));
+        printf("loop(4, 2): %ld\n", loop(4, 2));
+        printf("loop(5, 1): %ld\n", loop(5, 1));
+    }
+
+    return 0;
 }
