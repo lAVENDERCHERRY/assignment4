@@ -16,26 +16,26 @@
 //.L4:
         //ret
 
-// Function to calculate a result by iterating through each bit of 'a'
+// Function that performs bitwise operations on two long integers 'a' and 'b'
 long loop(long a, long b) {
-    // Initialize the result to 0
+    // Initialize the result variable to 0
     long result = 0;
 
-    // Start a loop with 'mask' initialized to 1
-    // as long as mask does not = 0. we continue the loop
+    // Start a loop with 'mask' initialized to 5 and running until 'mask' is not 0
+    // as long as mask is not 0, we loop 
     // each iteration, we shift left by 2 bits
-    for (long mask = 1; mask != 0; mask <<= 2) {
-        // Check if the current bit in 'a' (indicated by 'mask') is set (1)
+    for (long mask = 5; mask != 0; mask <<= 2) {
+        // Check if the current 'mask' bit is set in 'a'
         if (mask & a) {
-            // If the bit is set in 'a', perform a bitwise AND operation between 'mask' and 'b',
-            // and then perform a bitwise OR operation with the 'result'
-            result |= (mask & b);
+            // If the bit is set in 'a', set the corresponding bit in 'result' as well
+            result |= (mask & a);
         }
     }
 
-    // Return the final result
+    // Return the final result after the loop
     return result;
 }
+
 
 int main(int argc, char *argv[]) {
     if (argc == 3) {
